@@ -163,3 +163,14 @@ def binary_search(nod):
 ```
 
 - 이진트리 표현
+
+```python
+#부모노드
+node // 2
+#L
+node % 2
+#R
+node & 2 + 1
+#레벨의 시작점
+2 ** level
+```
