@@ -51,4 +51,39 @@ CDN이다 가져와야한다.
 </script>
 ```
 
-callback은 어제 배웠대…
+## AJAX가 무엇이냐
+
+Asynchronous JavaScript And XML  화면 전체를 새로고침 하지 않아도 서버로 요청을 보내고 데이터를 받아 화면의 일부분만 업데이트 가능
+
+비동기 통신이 없으면 스크롤이 올라간다. 새로고침이 된다.
+
+form으로 요청을 보내면 새로고침이 된다. 그러므로 javascript가 일을 할 것이다. 
+
+요청을 보낼 때 userpk와 csrftoken 이 필요하다. axios도 똑같다.
+
+```html
+<form id='asdf' data-user-id="{{person.pk}}">
+</form>
+
+<script>
+	const form = document.querySelector('#asf')
+	form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
+    axios({
+      method : 'POST',
+      url : '/accounts/userpk/follow/',
+    })
+  })
+</script>
+```
+
+위처럼 데이터를 태그에 넣을 수 있다.
+
+반드시 다 소문자여야한다!!!!!!!!
+
+좋아요 버튼 - 처음 가져올 때 리스트에 있으면 
+
+그다음에 자바스크립트가 누르면 버튼을 바꿔준다.
+
+비동기는 요청을 받는 동안 다른 작업을 할 수 있다.
