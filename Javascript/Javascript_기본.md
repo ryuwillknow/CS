@@ -116,3 +116,92 @@ changeFont()
 function changeFont() {
 
 const LiTags = document.querySelectorll(’li’)
+
+식별자 const function let 등등
+
+let이 변화 가능하다.
+
+const 재선언 불가능
+
+원시 자료 vs 참조자료
+
+참조자료 Object(key, value)와 Array(순서), function
+
+object 내부는 .과 []로 접근이 가능하다.
+
+array는 .length 접근가능
+
+함수 두 종류 + return은 너 마음대로
+
+```jsx
+
+function add(a, b) {
+	//say somethiing 선언식 호이스팅 발생
+}
+
+const add2 = function (a,b ) {
+	//say something 표현식 호이스팅 안됨
+}
+```
+
+익명 함수 쓰면 바로 실행?? for문 등 제어문 내부에서 function바로 쓰기…
+
+이건 콜백함수이다!!!!
+
+```jsx
+colors.forEach(function (color) {
+	//do
+}
+
+colors.forEach((color) => {
+	return // something
+}
+```
+
+… 잘 사용하자
+
+if else if else
+
+while
+
+for in (Object 속성 순회 KEY값)
+
+for of (Array 속성 순회)
+
+array.foreach
+
+인자 개수 상관 없다. … 잘 사용하자
+
+array매서드 여러개 잇다.
+
+array  .foreach .map(각요소에 실행하고 새로운 리스트 반환) .filter(True인 것들 반환) .find(True인 첫번째)  some every  1개라도 모두
+
+객체 선언 function으로 한다.
+
+```jsx
+funtion Memver(name, age, id) {
+ this.name = name
+ this.age = age
+ this.id = id
+}
+
+const memver3 = new Member('isac',21,12323)
+```
+
+## Dom
+
+window - tap 포함 Object
+
+document - 웹페이지 Object
+
+```jsx
+<script src='something.js'> </script>
+{% load static %}
+<link rel="stylesheet" href="{% static 'dark.css' %}">
+```
+
+static link가!!!! 반드시 부트스트랩 다음에 있어야한다.
+
++++ css는 캐시에 저장된다. 반드시 수정시 ?after를 붙여줘야한다.
+
+z-flex
