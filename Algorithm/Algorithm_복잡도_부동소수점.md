@@ -32,6 +32,35 @@ print(bin(a))
 
 ```
 
+## 비트연산자
+
+&  :  두 수의 비트 중 모두 1인 부분만 1인 비트를 출력한다.
+
+|    :   두 수의 비트 중  하나라도 1인 부분만 1인 비트를 출력한다.
+
+1 << n    :    비트를 왼쪽으로 n칸 이동한다  즉 **곱하기 2**n**이 된다.
+
+1000 >> n  :  비트를 오른쪽으로 n칸이동한다 즉 **나누기 2**n의 몫**이 된다 ( 1000 // 2*n)
+
+즉 if X  &  (2<<n):  은 그 자리에 비트가 있으면 2<<n이 return되어 True가 된다.
+
+## 부분집합
+
+```python
+a = list(map(int, input().split()))
+n = len(a)
+rlt = []
+for i in range(2**n):
+    temp = []
+    for j in range(n):
+        if i & 2**j:
+            temp.append(a[j])
+    rlt.append(temp)
+
+# 쉽게 리스트 컴프리핸션 부분집합
+rlt = [[a[j] for j in range(n) if i& 2**j] for i in range(2**n)]
+```
+
 ## 부동소수점
 
 ```python
