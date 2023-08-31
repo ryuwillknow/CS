@@ -37,8 +37,6 @@ while써서 다음 것이 숫자인가를 보는 것보다
 
 착각 : 모든 경로를 가본다
 
-[DFS 와 백트래킹](https://www.notion.so/DFS-1ee8408677934186b953f09afee8140e?pvs=21)
-
 ```python
 # 8방향 꿀팁
 for dx in range(-1, 2):
