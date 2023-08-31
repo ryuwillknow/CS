@@ -16,3 +16,8 @@ x = [[]] * 5 #이게 비정상 연동된다.
 ```
 
 이거 아주 악질임
+
+# List comprehension
+```python
+a = [x**3 for x in range(1,10) if x%2==0]
+```
