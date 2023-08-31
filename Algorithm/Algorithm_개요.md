@@ -122,4 +122,138 @@ A[j]↔ A[j+1]
 
 VSC는 메모장 느낌
 
-문제를
+## 카운팅 정렬
+
+각 항목이 몇개씩 있는지 세는 작업
+
+시간 복잡도 O(n+k) k는 정수 최대값
+
+- 제한 사항
+
+정수나 정수로 표현할 수 있는 자료만 적용가능, 각 항목의 발생횟수를 기록한다.
+
+ex) 0 - 9까지 리스트 만들고 숫자 있을 때마다 cnt = [0]*1000, cnt[i] += 1
+
+충분한 공간을 할당하려면 집합내의 가장 큰 정수를 알아야한다.!!!
+
+-포함이면 더해서 사용한다거나 유연하게 적용해야한다.
+
+- 적용법
+
+100만까지 가능하다. 인덱스가 10억이면 카운팅 정렬 못쓴다.
+
+- 과정
+
+cnt에 갯수 저장
+
+cnt에서 자신의 앞에 있는 원소와 더한다.(카운트 변형)
+
+현재 상태 : data counts(변형된 카운트) temp(정렬된 데이터) 
+
+- 장점
+
+원본의 숫자가 바뀌지 않아서 안전정렬이다. → 그래서 뒤부터 시작한다.
+
+```python
+a = list(map(int, input().split()))
+size = len(a)
+max_num = int(input())
+
+cnt = [0] * (max_num + 1) #0부터 시작한다.
+rlt = [0] * size
+
+for i in a:
+    cnt[i] += 1
+for i in range(max_num):
+    cnt[i+1] += cnt[i]  # 
+for i in range(size-1, -1, -1):
+    rlt[cnt[a[i]]-1] = a[i]
+    cnt[a[i]] -= 1 #먼저 빼고 넣어도 된다 사소한 디테일 차이다. 매우 중요하당
+		#cnt[a[i]] -= 1
+		#rlt[cnt[a[i]]] = a[i] 이렇게 해도 괜찮다.
+
+#역순은?
+
+print(rlt)
+```
+
+## Baby-gin Game
+
+세가지 카드가 연속적인 번호를 갖는 경우는 run 3장의 카드가 동일한 번호를 갖는 경우는 triplet이라고 한다.
+
+6장의 카드가 run과 triplet로만 구성한 경우를 babygin으로 부른다.
+
+## 완전검색 Brute -Force 브루트 포스 generate and test 기법
+
+모든 경우의 수를 테스트 한다. 일반적으로 경우의 수가 작을 때 유용하다.
+
+→ baby-gin에서 6개의 숫자로 만들 수 있는 조합을 모두 만들어본다.
+
+## Greedy 알고리즘
+
+이건 알고리즘의 접근 방식
+
+**계속 최적화된 방법이 정답이 아닐 수 있다. (인생처럼^^)**
+
+## 디버깅
+
+---
+
+옆에 점을 눌러야한다.
+
+## Baby Gin - 발린다
+
+바보의 코드
+
+```python
+cases = int(input())
+for x in range(1, cases + 1):
+    cnt = [0] * 10
+    num_list = list(map(int, list(input())))
+    for i in num_list:
+        cnt[i] += 1
+    run_v = tri = 0
+    run_temp = 0
+    for i in range(10):
+        if cnt[i]:
+            run_temp += 1
+        else:
+            run_temp = 0
+        if run_temp == 3:
+            min_v = min(cnt[i], cnt[i-1], cnt[i-2])
+            run_v += min_v
+            cnt[i] -= min_v
+            cnt[i - 1] -= min_v
+            cnt[i - 2] -= min_v
+            run_temp = 0
+    for i in range(10):
+        if cnt[i] >= 3:
+            tri += cnt[i]//3
+    print(f'#{x} {(run_v + tri) // 2}')
+```
+
+정석 코드
+
+```python
+cases = int(input())
+for x in range(1, cases + 1):
+    cnt = [0] * 12 # 매우중요 12칸이 진짜 중요하다. 센스
+    num_list = list(map(int, list(input())))
+    for i in num_list:
+        cnt[i] += 1
+    runv = triv = 0
+    i = 0
+    while i < 10:
+        if cnt[i] >= 3:
+            cnt[i] -= 3
+            triv += 1
+            continue
+        if cnt[i] and cnt[i+1] and cnt[i+2]:
+            cnt[i] -= 1
+            cnt[i+1] -= 1
+            cnt[i+2] -= 1
+            runv += 1
+            continue
+        i += 1
+    print(f'#{x} {(runv + triv) // 2}')
+```
