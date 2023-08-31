@@ -1,0 +1,113 @@
+html에서 request.user == comment.user은 되지만
+
+comment.user == request.user
+
+N : 1의 한계 :  foreign key는 한개 밖에 안되니까 실패
+
+동시에 예약을하면 안될까?? - 새로운 테이블이 필요하다.
+
+중개테이블이다!
+
+왜 _id냐는거야
+
+장고는 중개테이블이 있다. → manytomanyfield
+
+중개테이블을 자동으로 생성해준다.
+
+related_name을 주면 doctors 처럼 patients로 접근 가능
+
+doctor1 = Doctor.objects.get(id=1)
+
+MTMfield 커스텀은 through를 통해
+
+여러가지 argument가 있다. - related_name, through, symmetrical
+
+symmetrical - 자동으로 추가해준다. a.add(b) 하면 b.add(a)가 자동으로 된다. 기본적으로 False가 되어있다.
+
+[url.py](http://url.py) 에서 
+
+<str:username> 이여야하지만 없으면 기본적으로 문자열이다. <username>
+
+궁금한 점 : 매번 검색하는건가?
+
+팔로우는 username 혹은 user_pk 둘 다 가능하다
+
+### Fixtures 사용해 모델에 초기데이터를 제공하는 방법
+
+협업할 때 같은 데이터를 사용하기 위해서
+
+python [manage.py](http://manage.py/) dumpdata articles.article > article.json
+
+python [manage.py](http://manage.py/) dumpdata articles.article  —indent 4 > article.json
+
+4 줄씩 들여쓴다.
+
+한글이 문제가 되니까 해결해야한다.
+
+한번에 뽑은 데이터는 에러가 발생할 수 있다. 이걸 어떻게 하는가?
+
+### Fixture는 load
+
+기본 위치는 app_name/fixtures이다. 여기에 있으면 자동으로 보내준다.
+
+만약에 인코딩문제가 있다면 json파일을 메모장에 열고 다른이름으로 저장을 인코딩옵션을 UTF8으로 한다.
+
+깨지면 -Xutf8 옵션을 추가해서 dumpdata하면 된다.
+
+load가져올때 순서를 조심하자!!!!!!!!!! user를 가져와야지 article을 가져올 수 있다.
+
+### Improve Query
+
+섣부른 최적화를 하지 말자! 이게 만악의 근원이다! ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+
+n + 1 problem
+
+내가 원하는 한개의 데이터를 보기 위해서 N개를 더하는 것
+
+ORM이 어떻게 SQL과 소통하는가
+
+그냥사용하면 이상한 쿼리가 나간다.
+
+ORM의 특징이 무엇인가요? 
+
+ORM은 lazy loading전략을 사용한다. 아하 실제 데이터가 필요할 때 query사용한다. 데이터베이스를 그 때 호출한다.
+
+성능개선을 위해서
+
+해결책 : 가지고 올때 한번에 가지고와야한다. = Eager Loading
+
+select_related  prefatch_related
+
+```python
+pets = Pet.objects.all().select_related('pet_sitter')
+```
+
+결국 선택권을 주는 것이다. 이거 안쓰면 빠르기 때문
+
+### Django ORM - Caching
+
+한번 하면 몇번 콜하는가?
+
+바꾸면 1번만 콜 가능하다!!!!
+
+콜을 줄이자! 물론 너무 느리면 해야한다.
+
+```python
+# views.py
+def create_petsitter():
+	with open('names') as f:  #manage.py 옆에 있다.
+		for line in f.readline():
+			pet_sitter = PetSitter.objects.create(
+				first_name = line.split(' ')[0],
+				last_name = line.split(' ')[1],
+				age = random.randint(1, 80)
+			)
+			pet.objects.create(
+				name = line,
+				pet_sitter = pet_sitter
+			)
+			
+			
+```
+
+성능최적화는 insert를 얼마나 깔끔하게 하느냐에 달려있다.
