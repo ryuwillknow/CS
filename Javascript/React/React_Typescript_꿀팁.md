@@ -69,3 +69,8 @@ children는  닫는 태그 없는 하나의 태그에서만 적용가능하다. 
 
 ReactNode 이 친구는 type이다!!
 
+JSX {…props} 구문
+
+함수 컴포넌트, 클래스 컴포넌트 이 두 가지는 props의 자유도가 있다. 아무거나 다 들어간다. 하지만 일반 HTMLElement는 들어갈 수 있는 props는 정해져 있고 구문만 들어갈 수 있다.  그래서 두개를 맞춰서 쓰는 것이 중요하다. 
+
+리액트 17버전은 children 속성이 FC타입에 포함되어있지만 이후는 아니다. PropsWithChildren이라는 제네릭타입을 활용해서 children?:ReactNode 부분을 대체할 수 있다.  PropsWithChildren은 children 속성을 제공한다.
