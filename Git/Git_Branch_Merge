@@ -1,0 +1,73 @@
+## GIT BRANCH
+
+revert, reset은 혼자할 때
+
+branch은 협업할 때
+
+독립적으로 작업할 수 있도록 도와준다.
+
+git은 branch 적은 용량 소모
+
+### 명령어
+
+bash 옆에 master 현재 브랜치 작업중인지 나온다.
+
+git branch : 로컬저장소의 브랜치 목록 확인
+
+git branch 브랜치 이름 :  새로운 브랜치 생성
+
+git branch 브랜치 이름 커밋 id  : 특정 커밋을 기준으로 브랜치 생성
+
+git switch 브랜치 이름 : 그 브랜치로 간다.
+
+git switch -c 브랜치 이름 : 만들고 가기
+
+git switch -c 브랜치 이름 커밋id
+
+주의! switch하기 전에 반드시 커밋을 해야한다! + 터미널 착각 ㄴㄴ 엔터 쳐주자
+
+수정사항이 있으면 반영하지 않고 switch하지 못한다.  원상복구해도됨 restore로도
+
+### MERGE
+
+결국 하나의 프로젝트다.
+
+master를 사용자에게 보여준다. 상용이다.
+
+branch는 수정한다.
+
+git merge 합칠 브랜치 - 메인 브랜치로 switch 해야한다. 
+
+commit log도 합쳐진다!
+
+병합 3종류
+
+Fast-Forward
+
+3-way Merge
+
+Merge Conflict
+
+### Fast-Forward
+
+브랜치 만들고 마스터가 변경이 안됐을 때 브랜치가 가장 앞으로 간다. 
+
+### 3-way Merge
+
+각 브랜치의 커밋 두개와 공통의 조상 하나를 모아서 하나의 브랜치로 만든다.
+
+### Merge Conflict
+
+충돌하는 부분 다 수정해야한다.
+
+merging이 뜬다.  역시 add하고 commit을 한다.
+
+병합을 완료한 후에는
+
+git branch -d 브랜치 이름 우로 삭제 된다.
+
+git log —online —graph —all 로 병합에 대해서 간단하게 보여준다. 
+
+### branch push하는 법
+
+git push —set-upstream origin 브랜치 명
