@@ -74,3 +74,19 @@ JSX {…props} 구문
 함수 컴포넌트, 클래스 컴포넌트 이 두 가지는 props의 자유도가 있다. 아무거나 다 들어간다. 하지만 일반 HTMLElement는 들어갈 수 있는 props는 정해져 있고 구문만 들어갈 수 있다.  그래서 두개를 맞춰서 쓰는 것이 중요하다. 
 
 리액트 17버전은 children 속성이 FC타입에 포함되어있지만 이후는 아니다. PropsWithChildren이라는 제네릭타입을 활용해서 children?:ReactNode 부분을 대체할 수 있다.  PropsWithChildren은 children 속성을 제공한다.
+
+## ETC
+
+styled component 사용하면 scoped css 쉽게 사용가능하다. 
+
+`npm install styled-components`
+
+label 안에 button 진짜 안 먹힘
+
+styled component는 대문자로 시작해야한다.
+
+UseEffect 에서 []를 쓰나 안 쓰나에 따라 다르다. 반드시 써야한다.
+
+useRef 렌더링시 초기화되지 않는다. 
+
+ref인 DOM을 선택할 수 있다.
