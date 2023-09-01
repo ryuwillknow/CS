@@ -10,10 +10,6 @@ EC2는 복잡한 공유기 세팅없이 인터넷을 통해서 자유롭게 접�
 
 이 OS 상태 그대로 저장하는 기능을 이미지(AMI) 라고 한다
 
-[AWS 용어 정리](https://www.notion.so/AWS-fdb0b40402e84437898159838afd1d13?pvs=21)
-
-[AWS 가입 및 보안 설정](https://www.notion.so/AWS-0de68ad3030948a8a7f0e44927ea0414?pvs=21)
-
 instance : 컴퓨터
 
 EBS : 하드디스크
